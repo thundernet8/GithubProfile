@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "allowJs": true,
+        "target": "es2015",
+        "lib": [
+            "es2016.array.include",
+            "es2016",
+            "dom"
+        ],
+        "jsx": "react",
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "baseUrl": "./src",
+        "strictNullChecks": false,
+        "noUnusedLocals": true,
+        "types": [
+            "node"
+        ]
+    },
+    "include": [
+        "./src/"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts?",
+        "**/*.d.ts?",
+        "lib"
+    ],
+    "typeRoots": [
+        "node_modules/@types"
+    ]
+}

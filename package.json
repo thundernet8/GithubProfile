@@ -1,0 +1,60 @@
+{
+    "name": "github-profile",
+    "version": "1.0.0",
+    "description": "Tool of visualizing GitHub profile",
+    "main": "index.js",
+    "repository": "git@github.com:thundernet8/GithubProfile.git",
+    "keywords": [
+        "github profile",
+        "react",
+        "visualization"
+    ],
+    "author": "wuxueqian <wuxueqian2010@hotmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "dll": "cross-env NODE_ENV=production webpack -p --hide-modules --config webpack/dll.conf.babel.js",
+        "dll:dev": "cross-env NODE_ENV=development webpack --hide-modules --config webpack/dll.conf.babel.js",
+        "build": "rimraf dist && mkdirp dist && cross-env NODE_ENV=production npm run dll && webpack -p --progress --hide-modules --config webpack/prod.conf.babel.js",
+        "analyze": "rimraf dist && mkdirp dist && cross-env ANALYZE_ENV=true npm run build",
+        "build:ssr": "webpack --progress --hide-modules --config webpack/ssr.conf.babel.js && tsc ssr/index.ts",
+        "tsc:ssr": "tsc ssr/index.ts",
+        "build:dev": "rimraf dist && mkdirp dist && cross-env NODE_ENV=development npm run dll:dev && webpack --progress --hide-modules --config webpack/dev.conf.babel.js",
+        "dev": "npm run build:dev && webpack-dev-server --config webpack/dev.conf.babel.js",
+        "ssr": "npm run build && npm run build:ssr && node ssr",
+        "ssr:dev": "make clean && npm run build:dev && webpack --progress --hide-modules --config webpack/ssr.conf.babel.js && nodemon --watch ssr/**/*.ts --exec ts-node ssr/index.ts",
+        "start": "npm run build && npm run build:ssr && forever start ssr/index.js",
+        "start:o": "forever start ssr/index.js",
+        "tasklist": "forever list",
+        "restart": "forever restart ssr/index.js",
+        "stop": "forever stop ssr/index.js",
+        "lint": "npm run lint:ts && npm run lint:style",
+        "lint:ts": "tslint -e node_modules typings -c .tslintrc.json src/**/*.tsx",
+        "lint:style": "stylelint \"src/**/*.less\" --syntax less",
+        "lint-staged": "lint-staged",
+        "lint-staged:ts": "tslint --fix -c .tslintrc.json",
+        "lint-staged:style": "stylelint --syntax less",
+        "test": "ts-mocha -p ./ test/**/*.spec.ts"
+    },
+    "lint-staged": {
+        "src/**/*.{ts,tsx}": [
+            "lint-staged:ts"
+        ],
+        "src/**/*.less": [
+            "lint-staged:style"
+        ]
+    },
+    "pre-commit": "lint-staged",
+    "devDependencies": {
+        "@types/node": "^8.5.2",
+        "custom-tslint-rules-collection": "^1.0.0",
+        "lint-staged": "^6.0.0",
+        "tslint-react": "^3.2.0",
+        "typescript": "^2.6.2",
+        "webpack": "^3.10.0"
+    },
+    "dependencies": {
+        "react": "^16.2.0",
+        "react-document-meta": "^2.1.2",
+        "react-dom": "^16.2.0"
+    }
+}
