@@ -7,8 +7,17 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "SSR",
             "program": "${workspaceFolder}/ssr/index.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "API",
+            "program": "${workspaceFolder}/server/index.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
