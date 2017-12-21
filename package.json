@@ -13,7 +13,7 @@
         "dll:dev":
             "cross-env NODE_ENV=development webpack --hide-modules --config webpack/dll.conf.babel.js",
         "build":
-            "rimraf dist && mkdirp dist && cross-env NODE_ENV=production npm run dll && webpack -p --progress --hide-modules --config webpack/prod.conf.babel.js",
+            "rimraf dist && mkdirp dist && cross-env NODE_ENV=production npm run dll && cross-env NODE_ENV=production webpack -p --progress --hide-modules --config webpack/prod.conf.babel.js",
         "analyze": "rimraf dist && mkdirp dist && cross-env ANALYZE_ENV=true npm run build",
         "build:ssr":
             "rimraf src/**/*.js && webpack --progress --hide-modules --config webpack/ssr.conf.babel.js && rimraf src/**/*.js && tsc ssr/index.ts --lib es2015",
