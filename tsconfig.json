@@ -19,7 +19,7 @@
             "typings"
         ],
         "baseUrl": "./src",
-        "allowJs": true
+        "allowJs": false
     },
     "exclude": [
         "node_modules",

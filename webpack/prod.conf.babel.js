@@ -3,6 +3,7 @@ import webpack from "webpack";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 import OptimizeCssAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import baseConf from "./base.conf.babel";
+import { PUBLIC_ASSETS_URL } from "../env";
 
 const plugins = [
     new webpack.DefinePlugin({
@@ -70,7 +71,7 @@ const entry = {
 
 const output = {
     path: path.resolve(__dirname, "../dist/assets"),
-    publicPath: "/assets/",
+    publicPath: PUBLIC_ASSETS_URL,
     filename: "js/[name].[chunkhash:8].js",
     chunkFilename: "js/[name].[chunkhash:8].chunk.js"
 };

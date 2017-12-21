@@ -1,5 +1,6 @@
 import path from "path";
 import webpack from "webpack";
+import { PUBLIC_ASSETS_URL } from "../env";
 const AssetsPlugin = require("assets-webpack-plugin");
 
 const isDev = process.env.NODE_ENV !== "production";
@@ -47,7 +48,7 @@ const config = {
     },
     output: {
         path: path.resolve(__dirname, "../dist/assets/js"),
-        publicPath: isDev ? "/assets/js/" : "/assets/js/",
+        publicPath: isDev ? "/assets/js/" : `${PUBLIC_ASSETS_URL}js/`,
         filename: "[name].[chunkhash:8].js",
         library: "[name]_[chunkhash:8]"
     },

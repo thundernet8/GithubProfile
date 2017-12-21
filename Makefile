@@ -25,7 +25,6 @@ clean:
 	rm -rf src/shared/interface/**/*.js
 	rm -rf src/shared/utils/*.js
 	rm -rf src/shared/utils/**/*.js
-	rm -rf env.js
 
 publish:
 	# TODO
