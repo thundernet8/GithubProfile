@@ -203,14 +203,6 @@ html input[disabled] {
     cursor: default;
 }
 
-//  * Remove inner padding and border in Firefox 4+.
-button input {
-    &::-moz-focus-inner {
-        border: 0;
-        padding: 0;
-    }
-}
-
 //  * Address Firefox 4+ setting `line-height` on `input` using `!important` in the UA stylesheet.
 input {
     line-height: normal;
@@ -255,6 +247,14 @@ input {
         &::-webkit-search-decoration {
             -webkit-appearance: none;
         }
+    }
+}
+
+//  * Remove inner padding and border in Firefox 4+.
+button input {
+    &::-moz-focus-inner {
+        border: 0;
+        padding: 0;
     }
 }
 

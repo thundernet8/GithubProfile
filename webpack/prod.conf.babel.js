@@ -65,7 +65,7 @@ const loaders = [
 ];
 
 const entry = {
-    app: ["babel-polyfill", path.resolve(__dirname, "../src/app.ts")]
+    app: ["babel-polyfill", path.resolve(__dirname, "../src/app.tsx")]
 };
 
 const output = {

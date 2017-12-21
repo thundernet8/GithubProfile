@@ -100,6 +100,12 @@
             "check-typecast"
         ],
         "tsx-no-any-props": true,
-        "tsx-no-any-state": true
+        "tsx-no-any-state": true,
+        "jsx-no-lambda": false,
+        "jsx-no-string-ref": false,
+        "jsx-boolean-value": [true, "never"],
+        "jsx-wrap-multiline": false,
+        "jsx-alignment": false,
+        "jsx-no-multiline-js": false
     }
 }

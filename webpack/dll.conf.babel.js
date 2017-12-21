@@ -42,13 +42,7 @@ const config = {
             "mobx-react",
             "axios",
             "classnames",
-            "react-headroom",
-            "react-document-meta",
-            // "element-react",
-            "element-react/next",
-            "draft-js",
-            "react-draft-wysiwyg",
-            "moment"
+            "react-document-meta"
         ]
     },
     output: {

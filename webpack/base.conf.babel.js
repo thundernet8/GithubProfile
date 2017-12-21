@@ -117,12 +117,9 @@ export default function(morePlugins, moreRules) {
                 STYLES: path.resolve(__dirname, "../src/assets/styles"),
                 FONTS: path.resolve(__dirname, "../src/assets/fonts")
             },
-            modules: ["node_modules", path.resolve(__dirname, "../src/shared")]
+            modules: ["node_modules", path.resolve(__dirname, "../src")]
         },
         target: "web",
-        externals: {
-            jquery: "jQuery"
-        },
         module: {
             rules: getRules(moreRules)
         },

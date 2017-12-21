@@ -24,8 +24,7 @@ export default (req, res) => {
     let match;
     const storeArg: IStoreArgument = {
         match: {} as any,
-        location,
-        cookies: req.headers.cookie
+        location
     };
     // routes必须包含一个404通配路由
     routes.some(route => {
