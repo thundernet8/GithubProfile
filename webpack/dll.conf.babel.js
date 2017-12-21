@@ -47,7 +47,7 @@ const config = {
     },
     output: {
         path: path.resolve(__dirname, "../dist/assets/js"),
-        publicPath: isDev ? "/assets/js/" : "https://assets.webapproach.net/gp/assets/js/",
+        publicPath: isDev ? "/assets/js/" : "/assets/js/",
         filename: "[name].[chunkhash:8].js",
         library: "[name]_[chunkhash:8]"
     },

@@ -1,20 +1,21 @@
 import * as path from "path";
+import * as fs from "fs";
 import { matchPath } from "react-router-dom";
-import * as Promise from "bluebird";
+import * as _Promise from "bluebird";
 import * as ReactDOMServer from "react-dom/server";
 import * as ejs from "ejs";
 import { URL } from "url";
+import * as send from "koa-send";
 import { lowerCaseFirst } from "../src/shared/utils/TextKit";
-import IStoreArgument from "../src/shared/interface/IStoreArgument";
+import { IStoreArgument } from "../src/shared/interface/IStoreArgument";
 const App = require("../dist/assets/js/server").default;
 const routes = require("../dist/assets/js/server").Routes;
 const DocumentMeta = require("../dist/assets/js/server").SSRDocumentMeta;
 
-export default (req, res) => {
-    const fullUrl = req.protocol + "://" + req.headers.host + req.originalUrl;
-    const urlObj = new URL(fullUrl);
+export default async (ctx, next) => {
+    const urlObj: URL = ctx.URL;
     const location = {
-        url: fullUrl,
+        url: urlObj.protocol + "//" + urlObj.host + urlObj.pathname,
         hash: urlObj.hash,
         pathname: urlObj.pathname,
         search: urlObj.search
@@ -50,41 +51,37 @@ export default (req, res) => {
         promises.push(stores[key].fetchData());
     });
 
-    Promise.all(promises)
-        .then(() => {
-            const initialState = {};
-            Object.keys(stores).forEach((key: string) => {
-                initialState[key] = stores[key].toJSON();
-            });
-            const context: any = {};
-            const markup = ReactDOMServer.renderToString(App(location, context, stores));
-            const meta = DocumentMeta.renderAsHTML();
+    await _Promise.all(promises);
 
-            if (context.url) {
-                // Somewhere a `<Redirect>` was rendered
-                res.redirect(302, context.url);
-                return;
-            }
-
-            ejs.renderFile(
-                path.resolve(__dirname, "../dist/index.ejs"),
-                {
-                    meta,
-                    markup,
-                    initialState: JSON.stringify(initialState)
-                },
-                {},
-                function(err, html) {
-                    if (!err) {
-                        res.send(html);
-                    } else {
-                        res.status(500).send(err.toString());
-                    }
-                }
-            );
-        })
-        .catch(err => {
-            console.log(err);
-            res.sendFile(path.resolve(__dirname, "../dist/index.html"));
+    try {
+        const initialState = {};
+        Object.keys(stores).forEach((key: string) => {
+            initialState[key] = stores[key].toJSON();
         });
+        const context: any = {};
+        const markup = ReactDOMServer.renderToString(App(location, context, stores));
+        const meta = DocumentMeta.renderAsHTML();
+
+        if (context.url) {
+            // Somewhere a `<Redirect>` was rendered
+            ctx.redirect(302, context.url);
+            return;
+        }
+
+        const html = ejs.render(
+            fs.readFileSync(path.resolve(__dirname, "../dist/index.ejs")).toString(),
+            {
+                meta,
+                markup,
+                initialState: JSON.stringify(initialState)
+            }
+        );
+
+        ctx.status = 200;
+        ctx.body = html;
+        return next();
+    } catch (err) {
+        console.log(err);
+        send(ctx, "./dist/index.html");
+    }
 };

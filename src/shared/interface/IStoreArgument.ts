@@ -12,7 +12,7 @@ export interface ILocation {
     search: string;
 }
 
-export default interface IStoreArgument {
+export interface IStoreArgument {
     match: IMatch;
     location: ILocation;
 }

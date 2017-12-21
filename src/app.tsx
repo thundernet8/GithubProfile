@@ -5,11 +5,14 @@ import { Provider } from "mobx-react";
 // import PageLoader from "common/pageLoader";
 import * as DocumentMeta from "react-document-meta";
 import routes from "./routes";
+import { IS_NODE } from "../env";
+
 require("common/polyfill");
 
 require("STYLES/global/index.less");
 // require("STYLES/app.less");
 
+export const Routes = routes;
 export const SSRDocumentMeta = DocumentMeta;
 
 // SSR APP entry
@@ -54,4 +57,6 @@ class App extends React.Component {
     }
 }
 
-ReactDOM.hydrate(<App />, document.getElementById("app"));
+if (!IS_NODE) {
+    ReactDOM.hydrate(<App />, document.getElementById("app"));
+}

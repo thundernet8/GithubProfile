@@ -18,10 +18,10 @@ build:
 clean:
 	rm -rf dist
 	rm -rf ssr/*.js
-	rm -rf ssr/*.ejs
 	rm -rf src/shared/api/**/*.js
 	rm -rf src/shared/common/**/*.js
 	rm -rf src/shared/enum/**/*.js
+	rm -rf src/shared/interface/*.js
 	rm -rf src/shared/interface/**/*.js
 	rm -rf src/shared/utils/*.js
 	rm -rf src/shared/utils/**/*.js

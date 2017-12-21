@@ -1,10 +1,10 @@
-import path from "path";
-import webpack from "webpack";
-import ExtractTextPlugin from "extract-text-webpack-plugin";
-import OptimizeCssAssetsPlugin from "optimize-css-assets-webpack-plugin";
-import SimpleProgressWebpackPlugin from "customized-progress-webpack-plugin";
+import path from "path"
+import webpack from "webpack"
+import ExtractTextPlugin from "extract-text-webpack-plugin"
+import OptimizeCssAssetsPlugin from "optimize-css-assets-webpack-plugin"
+import SimpleProgressWebpackPlugin from "customized-progress-webpack-plugin"
 
-const vendersConfig = require("../venders-config.json");
+const vendersConfig = require("../venders-config.json")
 
 const plugins = [
     new webpack.DefinePlugin({
@@ -24,7 +24,7 @@ const plugins = [
         cssProcessorOptions: { discardComments: { removeAll: true } },
         canPrint: true
     })
-];
+]
 
 const loaders = [
     {
@@ -94,7 +94,7 @@ const loaders = [
                 "css-loader?modules&sourceMap&importLoaders=1&localIdentName=__[hash:base64:5]!postcss-loader!less-loader"
         })
     }
-];
+]
 
 let config = {
     node: {
@@ -102,7 +102,7 @@ let config = {
         __dirname: false
     },
     entry: {
-        server: [path.resolve(__dirname, "../src/server/app.tsx")]
+        server: [path.resolve(__dirname, "../src/app.tsx")]
     },
     output: {
         path: path.resolve(__dirname, "../dist/assets"),
@@ -119,13 +119,13 @@ let config = {
             STYLES: path.resolve(__dirname, "../src/assets/styles"),
             FONTS: path.resolve(__dirname, "../src/assets/fonts")
         },
-        modules: ["node_modules", path.resolve(__dirname, "../src/shared")]
+        modules: ["node_modules", path.resolve(__dirname, "../src")]
     },
     target: "node",
     module: {
         rules: loaders
     },
     plugins
-};
+}
 
-export default config;
+export default config

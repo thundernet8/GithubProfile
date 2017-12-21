@@ -70,7 +70,7 @@ const entry = {
 
 const output = {
     path: path.resolve(__dirname, "../dist/assets"),
-    publicPath: "https://assets.webapproach.net/gp/assets/",
+    publicPath: "/assets/",
     filename: "js/[name].[chunkhash:8].js",
     chunkFilename: "js/[name].[chunkhash:8].chunk.js"
 };
