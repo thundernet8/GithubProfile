@@ -3,6 +3,7 @@ import RedisService from "./RedisService";
 import ConsoleWrapper from "../util/ConsoleWrapper";
 import Repo from "../interface/Repo";
 import Commit from "../interface/Commit";
+import User from "../interface/User";
 
 export default class ProfileService {
     public async getUserProfile(username: string) {
@@ -30,6 +31,50 @@ export default class ProfileService {
         const gh = GithubService.getInstance();
 
         try {
+            const user = await gh.getUser(username);
+            if (user.type !== "User") {
+                throw new Error("organization profile are not available");
+            }
+            const {
+                login,
+                name,
+                email,
+                public_repos,
+                created_at,
+                updated_at,
+                html_url,
+                avatar_url,
+                bio,
+                company,
+                blog,
+                location,
+                followers,
+                following
+            } = user;
+
+            const basicProfile: User = {
+                login,
+                name,
+                email,
+                repos: public_repos,
+                join: created_at,
+                update: updated_at,
+                link: html_url,
+                avatar: avatar_url,
+                bio,
+                company,
+                blog,
+                location,
+                followers,
+                following
+            };
+
+            if (Number(public_repos) === 0) {
+                return {
+                    basicProfile
+                };
+            }
+
             const repos = await gh.getUserRepos(username);
             // Filter forked repos and remove unused fields
             const filteredRepos: Repo[] = repos
@@ -57,7 +102,8 @@ export default class ProfileService {
                 starsPerLan,
                 commitsPerLan,
                 commitsPerRepo,
-                starsPerRepo
+                starsPerRepo,
+                basicProfile
             };
         } catch (err) {
             ConsoleWrapper.error(err);

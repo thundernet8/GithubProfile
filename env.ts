@@ -1,3 +1,8 @@
+import * as path from "path";
+
+// Init process.env
+require("dotenv").config({ path: path.resolve(__dirname, "./envrc") });
+
 export const IS_PROD = process.env.NODE_ENV === "production";
 export const IS_NODE =
     typeof global !== "undefined" && new Object().toString.call(global) === "[object global]";
@@ -18,9 +23,9 @@ export const API_BASE =
         : `http://${API_SERVER_HOST}:${API_SERVER_PORT}/api/v1/`;
 
 // Github Token
-export const GITHUB_TOKEN = "";
+export const GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";
 
 // Redis credentials
-export const REDIS_HOST = "127.0.0.1";
-export const REDIS_PORT = 6379;
-export const REDIS_PASSWORD = "";
+export const REDIS_HOST = process.env.OS_REDIS_HOST || "127.0.0.1";
+export const REDIS_PORT = process.env.OS_REDIS_PORT || 6379;
+export const REDIS_PASSWORD = process.env.OS_REDIS_PASSWORD || "";
