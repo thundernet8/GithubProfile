@@ -82,7 +82,8 @@ export default class ProfileService {
             .map(lan => {
                 return {
                     lan,
-                    repos: map[lan]
+                    repos: map[lan],
+                    count: map[lan] && map[lan].length
                 };
             })
             .sort((a, b) => b.repos.length - a.repos.length);
@@ -179,14 +180,17 @@ export default class ProfileService {
             .map(lan => {
                 return {
                     lan,
-                    commits: lanMap[lan]
+                    commits: lanMap[lan],
+                    count: lanMap[lan] && lanMap[lan].length
                 };
             })
             .sort((a, b) => b.commits.length - a.commits.length);
 
         const repoData = Object.keys(repoMap)
             .map(name => {
-                return repoMap[name];
+                return Object.assign({}, repoMap[name], {
+                    count: repoMap[name] && repoMap[name].commits.length
+                });
             })
             .sort((a, b) => b.commits.length - a.commits.length);
 
@@ -197,17 +201,14 @@ export default class ProfileService {
     }
 
     private getStarsPerRepoInfo(repos: Repo[]) {
-        const data: any[] = [];
-        repos.forEach(repo => {
-            const { stars } = repo;
-            data.push({
-                stars,
-                repo
-            });
-        });
-
-        // sort desc by stars
-        data.sort((a, b) => b - a);
-        return data;
+        return repos
+            .map(repo => {
+                const { stars } = repo;
+                return {
+                    stars,
+                    repo
+                };
+            })
+            .sort((a, b) => b.stars - a.stars); // sort desc by stars
     }
 }
