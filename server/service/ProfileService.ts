@@ -224,21 +224,24 @@ export default class ProfileService {
 
         const lanData = Object.keys(lanMap)
             .map(lan => {
+                const commits = lanMap[lan];
                 return {
                     lan,
-                    commits: lanMap[lan],
-                    count: lanMap[lan] && lanMap[lan].length
+                    // commits: lanMap[lan],
+                    count: commits && commits.length
                 };
             })
-            .sort((a, b) => b.commits.length - a.commits.length);
+            .sort((a, b) => b.count - a.count);
 
         const repoData = Object.keys(repoMap)
             .map(name => {
-                return Object.assign({}, repoMap[name], {
-                    count: repoMap[name] && repoMap[name].commits.length
-                });
+                const { repo, commits } = repoMap[name];
+                return {
+                    repo,
+                    count: commits && commits.length
+                };
             })
-            .sort((a, b) => b.commits.length - a.commits.length);
+            .sort((a, b) => b.count - a.count);
 
         return {
             commitsPerLan: lanData,
