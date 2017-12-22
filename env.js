@@ -18,3 +18,7 @@ exports.API_BASE =
         : "http://" + exports.API_SERVER_HOST + ":" + exports.API_SERVER_PORT + "/api/v1/";
 // Github Token
 exports.GITHUB_TOKEN = "";
+// Redis credentials
+exports.REDIS_HOST = "127.0.0.1";
+exports.REDIS_PORT = 6379;
+exports.REDIS_PASSWORD = "";

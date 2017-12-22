@@ -9,16 +9,20 @@ export default class GithubService {
     private _rateLimit: RateLimit;
 
     private constructor() {
+        const headers: any = {
+            "User-Agent":
+                "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36"
+        };
+        if (GITHUB_TOKEN) {
+            headers.Authorization = `Bearer ${GITHUB_TOKEN}`;
+        }
+
         this.github = new GithubApi({
             timeout: 5000,
             host: "api.github.com", // should be api.github.com for GitHub
             protocol: "https",
             port: 443,
-            headers: {
-                "User-Agent":
-                    "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36",
-                Authorization: `Bearer ${GITHUB_TOKEN}`
-            },
+            headers,
             rejectUnauthorized: false // default: true
         });
     }

@@ -29,10 +29,14 @@ app.use(
 
 app.use(
     route.get("/api/profile/:username", async (ctx, username) => {
-        const ps = new ProfileService();
-        const profile = await ps.getUserProfile(username);
-        ctx.status = 200;
-        ctx.body = profile;
+        try {
+            const ps = new ProfileService();
+            const profile = await ps.getUserProfile(username);
+            ctx.status = 200;
+            ctx.body = profile;
+        } catch (err) {
+            ctx.throw(err.message || err.toString(), 500);
+        }
     })
 );
 

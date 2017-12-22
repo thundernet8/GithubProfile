@@ -21,6 +21,7 @@ export default class RedisService {
             if (!IS_PROD) {
                 ConsoleWrapper.error(err);
             }
+            throw err;
         });
     }
 
