@@ -1,11 +1,11 @@
 import * as path from "path";
 import * as Koa from "koa";
 import { API_SERVER_HOST, API_SERVER_PORT } from "../env";
-import * as moment from "moment";
 import * as bodyParser from "koa-bodyparser";
 import * as koaStatic from "koa-static";
 import * as route from "koa-route";
 import ProfileService from "./service/ProfileService";
+import ConsoleWrapper from "./util/ConsoleWrapper";
 
 const app = new Koa();
 
@@ -27,20 +27,19 @@ app.use(
     }) as any)
 );
 
-app.use(async (ctx, next) => {
-    // TODO
-    var p = new ProfileService();
-    var x = await p.getUserProfile("slashhuang");
-    console.log(x);
-    ctx.status = 200;
-    ctx.body = x;
-    next();
-});
+app.use(
+    route.get("/api/profile/:username", async (ctx, username) => {
+        const ps = new ProfileService();
+        const profile = await ps.getUserProfile(username);
+        ctx.status = 200;
+        ctx.body = profile;
+    })
+);
 
 app.on("error", err => {
-    console.error(`[${moment().format("YYYY-MM-DD HH:mm:ss")}]: ${err.message || err.toString()}`);
+    ConsoleWrapper.error(err);
 });
 
 app.listen(API_SERVER_PORT, API_SERVER_HOST, () => {
-    console.log(`API Server Is Listening at http://${API_SERVER_HOST}:${API_SERVER_PORT}`);
+    ConsoleWrapper.log(`API Server Is Listening at http://${API_SERVER_HOST}:${API_SERVER_PORT}`);
 });

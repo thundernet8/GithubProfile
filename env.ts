@@ -1,7 +1,10 @@
 export const IS_PROD = process.env.NODE_ENV === "production";
 export const IS_NODE =
     typeof global !== "undefined" && new Object().toString.call(global) === "[object global]";
+
+// CDN or Local assets url
 export const PUBLIC_ASSETS_URL = IS_PROD ? "https://assets.webapproach.net/gh/assets/" : "/assets/";
+
 // SSR Server
 export const SSR_SERVER_HOST = IS_PROD ? "127.0.0.1" : "127.0.0.1";
 export const SSR_SERVER_PORT = IS_PROD ? 9002 : 9002;
@@ -16,3 +19,8 @@ export const API_BASE =
 
 // Github Token
 export const GITHUB_TOKEN = "";
+
+// Redis credentials
+export const REDIS_HOST = "127.0.0.1";
+export const REDIS_PORT = 6379;
+export const REDIS_PASSWORD = "";
