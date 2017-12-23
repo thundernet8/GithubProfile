@@ -17,9 +17,10 @@ const readRoutes = function() {
     const yamlContent = yaml.safeLoad(yamlFile);
 
     const routes = yamlContent.map(item => {
-        let { path: routePath, module: moduleName, chunk, exact } = item;
+        let { path: routePath, redirect, module: moduleName, chunk, exact } = item;
         return {
             routePath,
+            redirect,
             moduleName,
             chunk,
             exact,
@@ -52,9 +53,9 @@ const genRoutes = () => {
             route.routePath = "";
         }
         codes.push(
-            `{path: "${route.routePath}", exact: ${route.exact ? "true" : "false"}, component: ${
-                route.componentName
-            }},`
+            `{path: "${route.routePath}", ${
+                route.redirect ? "redirect: " + '"' + route.redirect + '"' + ", " : ""
+            } exact: ${route.exact ? "true" : "false"}, component: ${route.componentName}},`
         );
     });
     codes.push(`];\r\n`);

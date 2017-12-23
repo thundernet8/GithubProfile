@@ -24,7 +24,8 @@
         "ssr:dev":
             "make clean && npm run build:dev && webpack --progress --hide-modules --config webpack/ssr.conf.babel.js && nodemon --watch ssr/**/*.ts --exec ts-node ssr/index.ts",
         "start:ssr": "npm run build && npm run build:ssr && forever start ssr/index.js",
-        "start:api": "tsc server/index.ts --lib es2015 && forever start server/index.js",
+        "start:api":
+            "tsc server/index.ts --lib es2015 --target es5 && forever start server/index.js",
         "start:o": "forever start ssr/index.js",
         "restart": "forever restart ssr/index.js",
         "stop": "forever stop ssr/index.js",

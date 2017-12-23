@@ -108,7 +108,8 @@ export default function(morePlugins, moreRules) {
     let config = {
         node: {
             __filename: false,
-            __dirname: false
+            __dirname: false,
+            fs: "empty"
         },
         resolve: {
             extensions: [".json", ".js", ".jsx", ".ts", ".tsx", ".css", ".less"],

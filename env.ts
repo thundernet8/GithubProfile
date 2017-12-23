@@ -1,11 +1,12 @@
 import * as path from "path";
 
-// Init process.env
-require("dotenv").config({ path: path.resolve(__dirname, "./envrc") });
-
-export const IS_PROD = process.env.NODE_ENV === "production";
 export const IS_NODE =
     typeof global !== "undefined" && new Object().toString.call(global) === "[object global]";
+
+// Init process.env
+IS_NODE && require("dotenv").config({ path: path.resolve(__dirname, "./envrc") });
+
+export const IS_PROD = process.env.NODE_ENV === "production";
 
 // CDN or Local assets url
 export const PUBLIC_ASSETS_URL = IS_PROD ? "https://assets.webapproach.net/gh/assets/" : "/assets/";

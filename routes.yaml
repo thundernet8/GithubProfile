@@ -5,10 +5,11 @@
 # exact React-router 对应的exact, 严格匹配路由
 
 - path: /
+  redirect: /search
   module: entries/home
   chunk: home
   exact: true
-- path: /
+- path: /search
   module: entries/search
   chunk: search
   exact: true

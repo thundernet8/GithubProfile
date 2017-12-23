@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var path = require("path");
-// Init process.env
-require("dotenv").config({ path: path.resolve(__dirname, "./envrc") });
-exports.IS_PROD = process.env.NODE_ENV === "production";
 exports.IS_NODE = typeof global !== "undefined" && new Object().toString.call(global) === "[object global]";
+// Init process.env
+exports.IS_NODE && require("dotenv").config({ path: path.resolve(__dirname, "./envrc") });
+exports.IS_PROD = process.env.NODE_ENV === "production";
 // CDN or Local assets url
 exports.PUBLIC_ASSETS_URL = exports.IS_PROD ? "https://assets.webapproach.net/gh/assets/" : "/assets/";
 // SSR Server
