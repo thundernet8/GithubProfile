@@ -98,6 +98,10 @@ export default class ProfileService {
             const starsPerRepo = this.getStarsPerRepoInfo(filteredRepos);
 
             return {
+                repos: filteredRepos.reduce((previous, current) => {
+                    previous[current.id] = current;
+                    return previous;
+                }, {}),
                 reposPerLan,
                 starsPerLan,
                 commitsPerLan,
@@ -117,9 +121,9 @@ export default class ProfileService {
             const { language } = repo;
             if (language) {
                 if (map[language]) {
-                    map[language].push(repo);
+                    map[language].push(repo.id);
                 } else {
-                    map[language] = [repo];
+                    map[language] = [repo.id];
                 }
             }
         });
@@ -237,7 +241,7 @@ export default class ProfileService {
             .map(name => {
                 const { repo, commits } = repoMap[name];
                 return {
-                    repo,
+                    repo: repo.id,
                     count: commits && commits.length
                 };
             })
@@ -255,7 +259,7 @@ export default class ProfileService {
                 const { stars } = repo;
                 return {
                     stars,
-                    repo
+                    repo: repo.id
                 };
             })
             .sort((a, b) => b.stars - a.stars); // sort desc by stars

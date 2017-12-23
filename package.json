@@ -87,6 +87,7 @@
         "webpack-dev-server": "^2.9.7"
     },
     "dependencies": {
+        "@koa/cors": "2",
         "axios": "^0.17.1",
         "babel-polyfill": "^6.26.0",
         "classnames": "^2.2.5",

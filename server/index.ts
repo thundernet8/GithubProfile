@@ -4,6 +4,7 @@ import { API_SERVER_HOST, API_SERVER_PORT } from "../env";
 import * as bodyParser from "koa-bodyparser";
 import * as koaStatic from "koa-static";
 import * as route from "koa-route";
+import * as cors from "@koa/cors";
 import ProfileService from "./service/ProfileService";
 import ConsoleWrapper from "./util/ConsoleWrapper";
 
@@ -18,6 +19,8 @@ app.use(async (ctx, next) => {
     const ms = Date.now() - start;
     ctx.set("X-Response-Time", `${ms}ms`);
 });
+
+app.use(cors({ credentials: true }));
 
 app.use(
     route.get("/assets/(.*)/", koaStatic(path.resolve(__dirname, "../dist"), {

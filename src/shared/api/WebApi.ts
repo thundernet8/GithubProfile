@@ -22,7 +22,7 @@ export function webApi<T>(
 
     const ax = axios.create({
         baseURL: API_BASE,
-        timeout: 60000,
+        timeout: 300000,
         withCredentials: true,
         httpsAgent: new https.Agent({
             rejectUnauthorized: false
