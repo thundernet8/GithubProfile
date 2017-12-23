@@ -13,7 +13,7 @@
         "label-position": true,
         "max-line-length": [false, 120],
         "member-ordering": [
-            true,
+            false,
             {
                 "order": "statics-first"
             }

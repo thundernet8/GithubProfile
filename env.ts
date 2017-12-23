@@ -20,8 +20,8 @@ export const API_SERVER_HOST = IS_PROD ? "127.0.0.1" : "127.0.0.1";
 export const API_SERVER_PORT = IS_PROD ? 9000 : 9000;
 export const API_BASE =
     IS_PROD && !IS_NODE
-        ? "https://example.com/api/v1/"
-        : `http://${API_SERVER_HOST}:${API_SERVER_PORT}/api/v1/`;
+        ? "https://example.com/api/"
+        : `http://${API_SERVER_HOST}:${API_SERVER_PORT}/api/`;
 
 // Github Token
 export const GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";

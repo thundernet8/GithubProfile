@@ -7,6 +7,8 @@ interface SearchEntryProps {}
 interface SearchEntryState {}
 
 export default class SearchEntry extends React.Component<SearchEntryProps, SearchEntryState> {
+    static STORE_CLASSES = [];
+
     constructor(props) {
         super(props);
     }
