@@ -1,4 +1,6 @@
 import * as React from "react";
+import SearchView from "../views/search";
+import CommonFooter from "../common/footer";
 
 interface SearchEntryProps {}
 
@@ -10,6 +12,11 @@ export default class SearchEntry extends React.Component<SearchEntryProps, Searc
     }
 
     render() {
-        return <div>SearchEntry</div>;
+        return (
+            <>
+                <SearchView />
+                <CommonFooter />
+            </>
+        );
     }
 }
