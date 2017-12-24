@@ -72,6 +72,28 @@ export default class GlobalStore extends AbstractStore {
         return `${location.protocol}//${location.host}${location.pathname}`;
     }
 
+    @computed
+    get totalStars() {
+        const { profile } = this;
+        if (!profile) {
+            return 0;
+        }
+        return profile.starsPerLan.reduce((previous, current) => {
+            return previous + current.stars;
+        }, 0);
+    }
+
+    @computed
+    get totalCommits() {
+        const { profile } = this;
+        if (!profile) {
+            return 0;
+        }
+        return profile.commitsPerLan.reduce((previous, current) => {
+            return previous + current.count;
+        }, 0);
+    }
+
     /**
      * SSR数据初始化(必须返回promise)
      */
