@@ -1,4 +1,4 @@
-import { observable, action } from "mobx";
+import { observable, action, computed } from "mobx";
 import { IStoreArgument } from "../interface/IStoreArgument";
 import AbstractStore from "./AbstractStore";
 import { IS_NODE } from "../../../env";
@@ -63,6 +63,14 @@ export default class GlobalStore extends AbstractStore {
                 this.loading = false;
             });
     };
+
+    @computed
+    get URL() {
+        if (IS_NODE) {
+            return this.Location.url;
+        }
+        return `${location.protocol}//${location.host}${location.pathname}`;
+    }
 
     /**
      * SSR数据初始化(必须返回promise)

@@ -5,6 +5,7 @@ import Loader from "../../common/pageLoader";
 import GlobalStore from "../../shared/store/GlobalStore";
 import Userinfo from "./userInfo";
 import PieChart from "./pieChart";
+import ShareBar from "../../common/shareBar";
 
 require("echarts/lib/chart/pie");
 require("echarts/lib/chart/line");
@@ -56,6 +57,7 @@ export default class ProfileView extends React.Component<ProfileViewProps, Profi
         return (
             <div>
                 <DocumentMeta {...meta} />
+                <ShareBar />
                 <Userinfo />
                 <div className={styles.chartRow}>
                     <PieChart
