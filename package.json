@@ -107,7 +107,6 @@
         "react-document-meta": "^2.1.2",
         "react-dom": "^16.2.0",
         "react-router-dom": "^4.2.2",
-        "redis": "^2.8.0",
-        "ts-node": "^4.0.2"
+        "redis": "^2.8.0"
     }
 }

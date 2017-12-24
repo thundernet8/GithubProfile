@@ -43,7 +43,17 @@ const config = {
             "mobx-react",
             "axios",
             "classnames",
-            "react-document-meta"
+            "react-document-meta",
+            "moment",
+            "bluebird",
+            "echarts/lib/echarts",
+            "echarts/lib/chart/pie",
+            "echarts/lib/chart/line",
+            "echarts/lib/component/tooltip",
+            "echarts/lib/component/title",
+            "echarts/lib/component/dataZoom",
+            "echarts/lib/component/grid",
+            "echarts/lib/component/legendScroll"
         ]
     },
     output: {

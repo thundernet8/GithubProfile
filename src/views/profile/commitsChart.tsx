@@ -114,7 +114,7 @@ export default class CommitsChart extends React.Component<CommitsChartProps, Com
                     sampling: "average",
                     itemStyle: {
                         normal: {
-                            color: "rgb(255, 70, 131)"
+                            color: "#8d98b3"
                         }
                     },
                     areaStyle: {
@@ -122,11 +122,11 @@ export default class CommitsChart extends React.Component<CommitsChartProps, Com
                             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                                 {
                                     offset: 0,
-                                    color: "rgb(255, 158, 68)"
+                                    color: "#59678c"
                                 },
                                 {
                                     offset: 1,
-                                    color: "rgb(255, 70, 131)"
+                                    color: "#8d98b3"
                                 }
                             ])
                         }
