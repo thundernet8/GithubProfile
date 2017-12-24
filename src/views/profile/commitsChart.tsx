@@ -2,11 +2,6 @@ import * as React from "react";
 import * as echarts from "echarts/lib/echarts";
 import moment from "moment";
 
-require("echarts/lib/chart/line");
-require("echarts/lib/component/tooltip");
-require("echarts/lib/component/title");
-require("echarts/lib/component/dataZoom");
-
 const styles = require("./styles/userInfo.less");
 
 interface CommitsChartProps {
@@ -88,9 +83,6 @@ export default class CommitsChart extends React.Component<CommitsChartProps, Com
                 boundaryGap: [0, "30%"],
                 min: 0,
                 minInterval: 10
-                // max: function(value) {
-                //     return value.max + Math.min(10, value.max);
-                // }
             },
             dataZoom: [
                 {

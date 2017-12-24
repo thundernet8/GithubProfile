@@ -14,9 +14,9 @@ export default class CommonFooter extends React.Component<CommonFooterProps, Com
     render() {
         return (
             <footer className={styles.footer}>
-                GitHub profile is built with <a href="http://koajs.com/">Koa</a> and
-                <a href="http://www.chartjs.org/docs/latest/" target="_blank">
-                    chart.js
+                GitHub profile is built with <a href="http://koajs.com/">Koa</a> and{" "}
+                <a href="http://echarts.baidu.com/" target="_blank">
+                    ECharts
                 </a>{" "}
                 <small>(visualization)</small>. Source is on{" "}
                 <a href="https://github.com/thundernet8/GithubProfile" target="_blank">
