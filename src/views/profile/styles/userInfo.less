@@ -1,0 +1,35 @@
+.wrapper {
+    display: flex;
+    padding-bottom: 40px;
+    height: 220px;
+}
+
+.avatar {
+    img {
+        align-self: center;
+        border-radius: 3px;
+        width: 175px;
+        margin-right: 20px;
+    }
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 20px;
+    flex-shrink: 0;
+    i {
+        color: rgba(0, 0, 0, 0.67);
+        margin-right: 5px;
+    }
+    small {
+        margin-left: 2px;
+    }
+}
+
+.commitsChart {
+    flex-grow: 1;
+    flex-shrink: 1;
+    position: relative;
+}

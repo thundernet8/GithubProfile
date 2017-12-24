@@ -1,0 +1,23 @@
+# 用于生成路由列表
+# path React-router 对应的path
+# module 要加载的入口模块
+# chunk 模块chunk别名, 影响生成的chunk文件名
+# exact React-router 对应的exact, 严格匹配路由
+
+- path: /
+  redirect: /search
+  module: entries/home
+  chunk: home
+  exact: true
+- path: /search
+  module: entries/search
+  chunk: search
+  exact: true
+- path: /profile/:username
+  module: entries/profile
+  chunk: profile
+  exact: true
+- path:
+  module: entries/notFound
+  chunk: notFound
+  exact: false

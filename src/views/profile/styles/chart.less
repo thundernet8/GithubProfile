@@ -1,0 +1,19 @@
+.chart {
+    flex: 1;
+    & > h2 {
+        small {
+            font-size: 20px;
+            font-weight: 300;
+        }
+    }
+    & > div {
+        & > div {
+            &:nth-child(2) {
+                // echart tooltip text wrap
+                height: auto;
+                max-width: 300px;
+                white-space: normal !important; // add this line...
+            }
+        }
+    }
+}

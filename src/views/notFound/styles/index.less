@@ -1,0 +1,49 @@
+.bgBox {
+    background-size: cover !important;
+    background-position: center center;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    padding: 20px;
+}
+
+.contentBox {
+    position: absolute;
+    max-width: 300px;
+    left: 5%;
+    top: 20%;
+    z-index: 100;
+    .text {
+        color: #fff;
+        font-family: "Raleway", sans-serif;
+        font-size: 42px;
+        font-weight: 800;
+        margin-bottom: 30px;
+    }
+    .btn {
+        & > a {
+            background: #00a7f5;
+            color: #fff;
+            display: inline-block;
+            border-radius: 50px;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            -o-border-radius: 50px;
+            font-family: "Raleway", sans-serif;
+            font-size: 14px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.4s;
+            -moz-transition: all 0.4s;
+            -ms-transition: all 0.4s;
+            -webkit-transition: all 0.4s;
+            -o-transition: all 0.4s;
+            padding: 20px 45px;
+            &:hover {
+                background: #0390d2;
+            }
+        }
+    }
+}

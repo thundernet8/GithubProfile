@@ -1,0 +1,44 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding: 25px 0;
+    margin-bottom: 20px;
+    background: rgba(140, 151, 179, 0.1);
+}
+
+.stat {
+    flex: 1;
+    text-align: center;
+    font-size: 20px;
+    line-height: 36px;
+    color: #666;
+    & > span {
+        position: relative;
+        // left: 50%;
+        // text-align: left;
+        // &:nth-child(1) {
+        //     margin-left: -100px;
+        // }
+        // &:nth-child(2) {
+        //     margin-left: 80px;
+        // }
+        // &:nth-child(3) {
+        //     margin-left: 80px;
+        // }
+    }
+    .count {
+        font-size: 36px;
+        font-weight: 500;
+        line-height: 36px;
+        margin-right: 10px;
+        vertical-align: bottom;
+        color: #3e396b;
+        text-shadow: 0 1px 2px rgba(62, 57, 107, 0.2);
+        // background-image: linear-gradient(to bottom left, #f8faff 0%, #eef0f7 100%);
+        // font-feature-settings: "pnum";
+        font-feature-settings: "tnum";
+        font-variant-numeric: tabular-nums;
+        font-family: "Montserrat", sans-serif;
+    }
+}
