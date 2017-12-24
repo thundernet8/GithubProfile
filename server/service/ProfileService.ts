@@ -4,9 +4,12 @@ import ConsoleWrapper from "../util/ConsoleWrapper";
 import Repo from "../interface/Repo";
 import Commit from "../interface/Commit";
 import User from "../interface/User";
+import Profile from "../interface/Profile";
 
 export default class ProfileService {
-    public async getUserProfile(username: string) {
+    private commits: { [sha: string]: string } = {};
+
+    public async getUserProfile(username: string): Promise<Profile> {
         // TODO use emitter to prevent same requests at same time
 
         try {
@@ -27,7 +30,7 @@ export default class ProfileService {
         }
     }
 
-    private async getFreshProfile(username: string) {
+    private async getFreshProfile(username: string): Promise<Profile> {
         const gh = GithubService.getInstance();
 
         try {
@@ -72,7 +75,7 @@ export default class ProfileService {
             if (Number(public_repos) === 0) {
                 return {
                     basicProfile
-                };
+                } as Profile;
             }
 
             const repos = await gh.getUserRepos(username);
@@ -102,6 +105,7 @@ export default class ProfileService {
                     previous[current.id] = current;
                     return previous;
                 }, {}),
+                commits: Object.keys(this.commits).map(key => this.commits[key]),
                 reposPerLan,
                 starsPerLan,
                 commitsPerLan,
@@ -209,6 +213,9 @@ export default class ProfileService {
                         }
                     })
                     .then(commits => {
+                        commits.forEach(commit => {
+                            this.commits[commit.sha] = commit.date;
+                        });
                         if (language) {
                             if (lanMap[language]) {
                                 lanMap[language] = lanMap[language].concat(commits);

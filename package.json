@@ -91,6 +91,7 @@
         "axios": "^0.17.1",
         "babel-polyfill": "^6.26.0",
         "classnames": "^2.2.5",
+        "echarts": "^3.8.5",
         "github": "^13.0.1",
         "koa": "^2.4.1",
         "koa-bodyparser": "^4.2.0",

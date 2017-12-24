@@ -26,10 +26,11 @@ class SearchView extends React.Component<SearchViewProps, SearchViewState> {
     };
 
     onKeyPress = e => {
-        e.preventDefault();
         if (e.key !== "Enter") {
             return;
         }
+
+        e.preventDefault();
 
         const { username } = this.state;
         if (!username) {

@@ -5,12 +5,23 @@ import * as bodyParser from "koa-bodyparser";
 import * as koaStatic from "koa-static";
 import * as route from "koa-route";
 import * as cors from "@koa/cors";
+import * as compress from "koa-compress";
 import ProfileService from "./service/ProfileService";
 import ConsoleWrapper from "./util/ConsoleWrapper";
 
 const app = new Koa();
 
 app.use(bodyParser({}));
+
+app.use(
+    compress({
+        filter: function(content_type) {
+            return /(json|html|text)/i.test(content_type);
+        },
+        threshold: 2048,
+        flush: require("zlib").Z_SYNC_FLUSH
+    })
+);
 
 // x-response-time
 app.use(async (ctx, next) => {

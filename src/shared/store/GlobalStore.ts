@@ -2,7 +2,7 @@ import { observable, action } from "mobx";
 import { IStoreArgument } from "../interface/IStoreArgument";
 import AbstractStore from "./AbstractStore";
 import { IS_NODE } from "../../../env";
-import User from "../../../server/interface/User";
+import Profile from "../../../server/interface/Profile";
 import { FetchProfile } from "../api/Profile";
 
 declare var window;
@@ -45,7 +45,7 @@ export default class GlobalStore extends AbstractStore {
         GlobalStore.instance = null as any;
     }
 
-    @observable profile: User;
+    @observable profile: Profile;
 
     @observable loading: boolean = false;
 
