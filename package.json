@@ -90,6 +90,7 @@
         "@koa/cors": "2",
         "axios": "^0.17.1",
         "babel-polyfill": "^6.26.0",
+        "bluebird": "^3.5.1",
         "classnames": "^2.2.5",
         "echarts": "^3.8.5",
         "github": "^13.0.1",

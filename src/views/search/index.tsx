@@ -1,5 +1,6 @@
 import * as React from "react";
 import { withRouter } from "react-router-dom";
+import DocumentMeta from "react-document-meta";
 
 const styles = require("./styles/index.less");
 
@@ -40,8 +41,20 @@ class SearchView extends React.Component<SearchViewProps, SearchViewState> {
     };
 
     render() {
+        const meta = {
+            title: `Github Profile`,
+            description: "",
+            meta: {
+                charset: "utf-8",
+                name: {
+                    keywords: "Github,Github profile"
+                }
+            }
+        };
+
         return (
             <main className={styles.content}>
+                <DocumentMeta {...meta} />
                 <div className={styles.searchScreen}>
                     <h1>Enter GitHub username</h1>
                     <form>

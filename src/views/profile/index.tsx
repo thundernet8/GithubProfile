@@ -1,5 +1,6 @@
 import * as React from "react";
 import { inject, observer } from "mobx-react";
+import DocumentMeta from "react-document-meta";
 import Loader from "../../common/pageLoader";
 import GlobalStore from "../../shared/store/GlobalStore";
 import Userinfo from "./userInfo";
@@ -32,6 +33,7 @@ export default class ProfileView extends React.Component<ProfileViewProps, Profi
         const { store } = this.props;
         const { profile } = store as GlobalStore;
         const {
+            basicProfile,
             repos,
             reposPerLan,
             starsPerLan,
@@ -39,8 +41,21 @@ export default class ProfileView extends React.Component<ProfileViewProps, Profi
             commitsPerRepo,
             starsPerRepo
         } = profile;
+
+        const meta = {
+            title: `${basicProfile.login}'s github profile summary`,
+            description: basicProfile.bio,
+            meta: {
+                charset: "utf-8",
+                name: {
+                    keywords: "Github,Github profile"
+                }
+            }
+        };
+
         return (
             <div>
+                <DocumentMeta {...meta} />
                 <Userinfo />
                 <div className={styles.chartRow}>
                     <PieChart
@@ -102,7 +117,7 @@ export default class ProfileView extends React.Component<ProfileViewProps, Profi
         const { loading } = store as GlobalStore;
         return (
             <main className={styles.content}>
-                {loading && <Loader text="Analyzing GitHub profile" />}
+                {loading && <Loader text="Analyzing GitHub Profile" />}
                 {!loading && this.renderData()}
             </main>
         );

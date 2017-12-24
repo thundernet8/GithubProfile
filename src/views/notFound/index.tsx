@@ -16,7 +16,7 @@ export default class NotFoundView extends React.Component<NotFoundViewProps, Not
 
     render() {
         const meta = {
-            title: "404 Not Found",
+            title: "404 Not Found - Github Profile",
             description: "",
             meta: {
                 charset: "utf-8",
