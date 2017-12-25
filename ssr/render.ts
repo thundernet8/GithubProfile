@@ -64,7 +64,7 @@ export default async (ctx, next) => {
 
         if (context.url) {
             // Somewhere a `<Redirect>` was rendered
-            ctx.redirect(302, context.url);
+            ctx.redirect(context.url);
             return;
         }
 

@@ -4,4 +4,4 @@ src/**/*.js
 *.log
 envrc
 server/**/*.js
-ssr/**/*.js
+ssr/*.js

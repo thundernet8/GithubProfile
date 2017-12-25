@@ -1,5 +1,5 @@
 import * as WebSocket from "ws";
-import { WS_SERVER_HOST, WS_SERVER_PORT, IS_PROD } from "../env";
+import { WS_SERVER_HOST, WS_SERVER_PORT, WS_RATELIMIT_PATH, IS_PROD } from "../env";
 import ConsoleWrapper from "./util/ConsoleWrapper";
 import GithubService from "./service/GithubService";
 
@@ -7,7 +7,7 @@ export default function startRateLimitWSServer() {
     const wss = new WebSocket.Server({
         host: WS_SERVER_HOST,
         port: WS_SERVER_PORT,
-        path: "/ratelimit",
+        path: WS_RATELIMIT_PATH,
         headers: {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Headers": "",

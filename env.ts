@@ -9,27 +9,28 @@ IS_NODE && require("dotenv").config({ path: path.resolve(__dirname, "./envrc") }
 export const IS_PROD = process.env.NODE_ENV === "production";
 
 // CDN or Local assets url
-export const PUBLIC_ASSETS_URL = IS_PROD ? "https://assets.webapproach.net/gh/assets/" : "/assets/";
+export const PUBLIC_ASSETS_URL = IS_PROD ? "https://assets.webapproach.net/gp/assets/" : "/assets/";
 
 // SSR Server
 export const SSR_SERVER_HOST = IS_PROD ? "127.0.0.1" : "127.0.0.1";
-export const SSR_SERVER_PORT = IS_PROD ? 9002 : 9002;
+export const SSR_SERVER_PORT = IS_PROD ? 8082 : 9002;
 
 // API Server
 export const API_SERVER_HOST = IS_PROD ? "127.0.0.1" : "127.0.0.1";
-export const API_SERVER_PORT = IS_PROD ? 9000 : 9000;
+export const API_SERVER_PORT = IS_PROD ? 8000 : 9000;
 export const API_BASE =
     IS_PROD && !IS_NODE
-        ? "https://example.com/api/"
+        ? "https://gp.fedepot.com/api/"
         : `http://${API_SERVER_HOST}:${API_SERVER_PORT}/api/`;
 
 // WebSocket Server(Ratelimit realtime notify)
 export const WS_SERVER_HOST = IS_PROD ? "127.0.0.1" : "127.0.0.1";
 export const WS_SERVER_PORT = IS_PROD ? 8999 : 8999;
+export const WS_RATELIMIT_PATH = "/ws/ratelimit";
 export const WS_API_BASE =
     IS_PROD && !IS_NODE
-        ? "ws://example.com/ratelimit"
-        : `ws://${WS_SERVER_HOST}:${WS_SERVER_PORT}/ratelimit`;
+        ? "wss://gp.fedepot.com/ws/ratelimit"
+        : `ws://${WS_SERVER_HOST}:${WS_SERVER_PORT}${WS_RATELIMIT_PATH}`;
 
 // Github Token
 export const GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";
