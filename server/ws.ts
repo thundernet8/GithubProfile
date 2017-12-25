@@ -46,7 +46,7 @@ export default function startRateLimitWSServer() {
 
     if (!IS_PROD) {
         ConsoleWrapper.log(
-            `Ratelimit WS Server Is Listening at ws://${WS_SERVER_HOST}:${WS_SERVER_PORT}/ratelimit`
+            `Ratelimit WS Server Is Listening at ws://${WS_SERVER_HOST}:${WS_SERVER_PORT}${WS_RATELIMIT_PATH}`
         );
     }
 }

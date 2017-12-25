@@ -27,6 +27,10 @@ export default class ProfileEntry extends React.Component<ProfileEntryProps, Pro
         }
     }
 
+    componentWillUnmount() {
+        GlobalStore.destroy();
+    }
+
     render() {
         const { match, location } = this.props;
         return (

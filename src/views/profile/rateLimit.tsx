@@ -12,6 +12,8 @@ interface RateLimitState {
 declare var WebSocket;
 
 export default class RateLimit extends React.Component<RateLimitProps, RateLimitState> {
+    private mounted: boolean = false;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -24,17 +26,24 @@ export default class RateLimit extends React.Component<RateLimitProps, RateLimit
         // const wsProtocol = window.location.protocol.indexOf("https") > -1 ? "wss" : "ws";
         // const ws = new WebSocket(wsProtocol + "://" + location.hostname + ":" + location.port + "/ws/ratelimit");
         ws.onmessage = message => {
-            this.setState({
-                remain: Number(message.data.toString())
-            });
-            setTimeout(() => {
-                ws.send("");
-            }, 2000);
+            if (this.mounted) {
+                this.setState({
+                    remain: Number(message.data.toString())
+                });
+                setTimeout(() => {
+                    ws.send("");
+                }, 2000);
+            }
         };
     };
 
     componentDidMount() {
+        this.mounted = true;
         this.setupRateLimitWSConnection();
+    }
+
+    componentWillUnmount() {
+        this.mounted = false;
     }
 
     render() {
