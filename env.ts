@@ -23,6 +23,14 @@ export const API_BASE =
         ? "https://example.com/api/"
         : `http://${API_SERVER_HOST}:${API_SERVER_PORT}/api/`;
 
+// WebSocket Server(Ratelimit realtime notify)
+export const WS_SERVER_HOST = IS_PROD ? "127.0.0.1" : "127.0.0.1";
+export const WS_SERVER_PORT = IS_PROD ? 8999 : 8999;
+export const WS_API_BASE =
+    IS_PROD && !IS_NODE
+        ? "ws://example.com/ratelimit"
+        : `ws://${WS_SERVER_HOST}:${WS_SERVER_PORT}/ratelimit`;
+
 // Github Token
 export const GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";
 

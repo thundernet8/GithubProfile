@@ -23,7 +23,7 @@ install:
 script:
     - yarn lint
     - yarn build
-    - yarn test
+    # - yarn test
 
 branches:
     only:
