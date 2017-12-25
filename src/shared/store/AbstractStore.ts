@@ -25,8 +25,6 @@ export default abstract class AbstractStore {
         this.location = arg.location;
     }
 
-    public abstract destroy();
-
     // SSR 预加载数据
     abstract fetchData(): Promise<any>;
 
