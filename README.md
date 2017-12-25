@@ -15,3 +15,13 @@
 </div>
 
 <br>
+
+## About
+
+Inspired by [tipsy](https://github.com/tipsy/github-profile-summary). This instance was finished with React/Koa/Echarts, support server-side rendering
+
+Live at [https://gp.fedepot.com](https://gp.fedepot.com)
+
+## Screenshot
+
+![Screenshot](screenshot/screenshot.png)
