@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var path = require("path");
 exports.IS_NODE = typeof global !== "undefined" && new Object().toString.call(global) === "[object global]";
 // Init process.env
@@ -9,7 +9,7 @@ exports.IS_PROD = process.env.NODE_ENV === "production";
 exports.PUBLIC_ASSETS_URL = exports.IS_PROD ? "https://assets.webapproach.net/gp/assets/" : "/assets/";
 // SSR Server
 exports.SSR_SERVER_HOST = exports.IS_PROD ? "127.0.0.1" : "127.0.0.1";
-exports.SSR_SERVER_PORT = exports.IS_PROD ? 8002 : 9002;
+exports.SSR_SERVER_PORT = exports.IS_PROD ? 8082 : 9002;
 // API Server
 exports.API_SERVER_HOST = exports.IS_PROD ? "127.0.0.1" : "127.0.0.1";
 exports.API_SERVER_PORT = exports.IS_PROD ? 8000 : 9000;

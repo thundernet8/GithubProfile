@@ -13,7 +13,7 @@ export const PUBLIC_ASSETS_URL = IS_PROD ? "https://assets.webapproach.net/gp/as
 
 // SSR Server
 export const SSR_SERVER_HOST = IS_PROD ? "127.0.0.1" : "127.0.0.1";
-export const SSR_SERVER_PORT = IS_PROD ? 8002 : 9002;
+export const SSR_SERVER_PORT = IS_PROD ? 8082 : 9002;
 
 // API Server
 export const API_SERVER_HOST = IS_PROD ? "127.0.0.1" : "127.0.0.1";
