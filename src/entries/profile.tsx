@@ -18,6 +18,15 @@ export default class ProfileEntry extends React.Component<ProfileEntryProps, Pro
         super(props);
     }
 
+    componentDidUpdate(prevProps) {
+        const { location, match } = this.props;
+        const { username } = match.params;
+        const prevUsername = prevProps.match.params.username;
+        if (username !== prevUsername) {
+            GlobalStore.rebuild({ location, match });
+        }
+    }
+
     render() {
         const { match, location } = this.props;
         return (

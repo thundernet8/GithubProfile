@@ -41,6 +41,13 @@ export default class GlobalStore extends AbstractStore {
         }
     }
 
+    public static rebuild(arg: IStoreArgument = {} as IStoreArgument) {
+        if (GlobalStore.instance) {
+            GlobalStore.instance = null as any;
+        }
+        GlobalStore.instance = GlobalStore.getInstance(arg);
+    }
+
     public destroy() {
         GlobalStore.instance = null as any;
     }
