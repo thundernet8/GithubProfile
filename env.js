@@ -21,7 +21,7 @@ exports.WS_SERVER_HOST = exports.IS_PROD ? "127.0.0.1" : "127.0.0.1";
 exports.WS_SERVER_PORT = exports.IS_PROD ? 8999 : 8999;
 exports.WS_RATELIMIT_PATH = "/ws/ratelimit";
 exports.WS_API_BASE = exports.IS_PROD && !exports.IS_NODE
-    ? "ws://gp.fedepot.com/ws/ratelimit"
+    ? "wss://gp.fedepot.com/ws/ratelimit"
     : "ws://" + exports.WS_SERVER_HOST + ":" + exports.WS_SERVER_PORT + exports.WS_RATELIMIT_PATH;
 // Github Token
 exports.GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";

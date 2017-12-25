@@ -29,7 +29,7 @@ export const WS_SERVER_PORT = IS_PROD ? 8999 : 8999;
 export const WS_RATELIMIT_PATH = "/ws/ratelimit";
 export const WS_API_BASE =
     IS_PROD && !IS_NODE
-        ? "ws://gp.fedepot.com/ws/ratelimit"
+        ? "wss://gp.fedepot.com/ws/ratelimit"
         : `ws://${WS_SERVER_HOST}:${WS_SERVER_PORT}${WS_RATELIMIT_PATH}`;
 
 // Github Token

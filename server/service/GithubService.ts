@@ -37,6 +37,7 @@ export default class GithubService {
                 this.fetchRateLimit();
             });
         }
+        this.fetchRateLimit();
     }
 
     public static getInstance() {
