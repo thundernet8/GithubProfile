@@ -55,7 +55,7 @@ export default class UserInfo extends React.Component<UserInfoProps, UserInfoSta
                         {getTimeDiff(moment(basicProfile.join))}
                     </div>
                     <div>
-                        <i className="fa fa-fw fa-building" />
+                        <i className="fa fa-fw fa-map-marker" />
                         {basicProfile.location}
                     </div>
                     {basicProfile.blog && (

@@ -7,6 +7,7 @@ import Userinfo from "./userInfo";
 import PieChart from "./pieChart";
 import ShareBar from "../../common/shareBar";
 import Stats from "./stats";
+import RateLimit from "./rateLimit";
 
 require("echarts/lib/chart/pie");
 require("echarts/lib/chart/line");
@@ -34,6 +35,14 @@ export default class ProfileView extends React.Component<ProfileViewProps, Profi
     renderData = () => {
         const { store } = this.props;
         const { profile } = store as GlobalStore;
+        if (!profile) {
+            return (
+                <div>
+                    <div className={styles.error}>Opps.</div>
+                    <RateLimit />
+                </div>
+            );
+        }
         const {
             basicProfile,
             repos,
@@ -112,6 +121,7 @@ export default class ProfileView extends React.Component<ProfileViewProps, Profi
                             .slice(0, 10)}
                     />
                 </div>
+                <RateLimit />
             </div>
         );
     };

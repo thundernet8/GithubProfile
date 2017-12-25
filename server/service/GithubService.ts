@@ -1,4 +1,5 @@
 import * as GithubApi from "github";
+import * as schedule from "node-schedule";
 import RateLimit from "../model/RateLimit";
 import { GITHUB_TOKEN, IS_PROD } from "../../env";
 import ConsoleWrapper from "../util/ConsoleWrapper";
@@ -7,6 +8,7 @@ export default class GithubService {
     private static instance: GithubService;
     private github;
     private _rateLimit: RateLimit;
+    private _scheduleRateLimitJob;
 
     private constructor() {
         const headers: any = {
@@ -25,6 +27,16 @@ export default class GithubService {
             headers,
             rejectUnauthorized: false // default: true
         });
+
+        if (!this._scheduleRateLimitJob) {
+            // fetch rate limit every minute
+            this._scheduleRateLimitJob = schedule.scheduleJob("*/1 * * * *", () => {
+                if (!IS_PROD) {
+                    ConsoleWrapper.log("Executing scheduled rate limit job");
+                }
+                this.fetchRateLimit();
+            });
+        }
     }
 
     public static getInstance() {
@@ -44,6 +56,12 @@ export default class GithubService {
 
     public get rateLimit() {
         return this._rateLimit;
+    }
+
+    public static cancelScheduleJob() {
+        if (GithubService.instance && GithubService.instance._scheduleRateLimitJob) {
+            GithubService.instance._scheduleRateLimitJob.cancel();
+        }
     }
 
     public async getUser(username: string) {
@@ -97,5 +115,27 @@ export default class GithubService {
         }
 
         return commits;
+    }
+
+    // cron event to update rate limit
+    public async fetchRateLimit(): Promise<RateLimit> {
+        try {
+            const resp = await this.github.users.getForUser({ username: "thundernet8" });
+            if (resp) {
+                this.updateRateLimit(resp.meta);
+                return this.rateLimit;
+            }
+            throw new Error();
+        } catch (err) {
+            this.updateRateLimit({
+                "x-ratelimit-limit": 0,
+                "x-ratelimit-remaining": 0,
+                "x-ratelimit-reset": 0
+            });
+            if (!IS_PROD) {
+                ConsoleWrapper.error(err);
+            }
+            return this.rateLimit;
+        }
     }
 }

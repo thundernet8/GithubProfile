@@ -33,6 +33,7 @@
         "lint-staged": "lint-staged",
         "lint-staged:ts": "tslint --fix -c .tslintrc.json",
         "lint-staged:style": "stylelint --syntax less",
+        "tsc:api": "tsc server/index.ts --lib es2015 --target es5 ",
         "test": "ts-mocha -p ./ test/**/*.spec.ts"
     },
     "lint-staged": {
@@ -91,6 +92,7 @@
         "axios": "^0.17.1",
         "babel-polyfill": "^6.26.0",
         "bluebird": "^3.5.1",
+        "bufferutil": "^3.0.3",
         "classnames": "^2.2.5",
         "echarts": "^3.8.5",
         "github": "^13.0.1",
@@ -103,11 +105,14 @@
         "mobx": "^3.4.1",
         "mobx-react": "^4.3.5",
         "moment": "^2.20.1",
+        "node-schedule": "^1.2.5",
         "qrcode.react": "^0.7.2",
         "react": "^16.2.0",
         "react-document-meta": "^2.1.2",
         "react-dom": "^16.2.0",
         "react-router-dom": "^4.2.2",
-        "redis": "^2.8.0"
+        "redis": "^2.8.0",
+        "utf-8-validate": "^4.0.0",
+        "ws": "^3.3.3"
     }
 }

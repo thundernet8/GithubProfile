@@ -8,6 +8,8 @@ import * as cors from "@koa/cors";
 import * as compress from "koa-compress";
 import ProfileService from "./service/ProfileService";
 import ConsoleWrapper from "./util/ConsoleWrapper";
+import startRateLimitWSServer from "./ws";
+import GithubService from "./service/GithubService";
 
 const app = new Koa();
 
@@ -60,4 +62,10 @@ app.on("error", err => {
 
 app.listen(API_SERVER_PORT, API_SERVER_HOST, () => {
     ConsoleWrapper.log(`API Server Is Listening at http://${API_SERVER_HOST}:${API_SERVER_PORT}`);
+    startRateLimitWSServer();
+});
+
+process.on("exit", code => {
+    ConsoleWrapper.log(`Process about to exit with code: ${code}`);
+    GithubService.cancelScheduleJob();
 });

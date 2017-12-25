@@ -16,6 +16,12 @@ exports.API_SERVER_PORT = exports.IS_PROD ? 9000 : 9000;
 exports.API_BASE = exports.IS_PROD && !exports.IS_NODE
     ? "https://example.com/api/"
     : "http://" + exports.API_SERVER_HOST + ":" + exports.API_SERVER_PORT + "/api/";
+// WebSocket Server(Ratelimit realtime notify)
+exports.WS_SERVER_HOST = exports.IS_PROD ? "127.0.0.1" : "127.0.0.1";
+exports.WS_SERVER_PORT = exports.IS_PROD ? 8999 : 8999;
+exports.WS_API_BASE = exports.IS_PROD && !exports.IS_NODE
+    ? "ws://example.com/ratelimit"
+    : "ws://" + exports.WS_SERVER_HOST + ":" + exports.WS_SERVER_PORT + "/ratelimit";
 // Github Token
 exports.GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";
 // Redis credentials
