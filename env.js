@@ -9,10 +9,10 @@ exports.IS_PROD = process.env.NODE_ENV === "production";
 exports.PUBLIC_ASSETS_URL = exports.IS_PROD ? "https://assets.webapproach.net/gh/assets/" : "/assets/";
 // SSR Server
 exports.SSR_SERVER_HOST = exports.IS_PROD ? "127.0.0.1" : "127.0.0.1";
-exports.SSR_SERVER_PORT = exports.IS_PROD ? 9002 : 9002;
+exports.SSR_SERVER_PORT = exports.IS_PROD ? 8002 : 9002;
 // API Server
 exports.API_SERVER_HOST = exports.IS_PROD ? "127.0.0.1" : "127.0.0.1";
-exports.API_SERVER_PORT = exports.IS_PROD ? 9000 : 9000;
+exports.API_SERVER_PORT = exports.IS_PROD ? 8000 : 9000;
 exports.API_BASE = exports.IS_PROD && !exports.IS_NODE
     ? "https://example.com/api/"
     : "http://" + exports.API_SERVER_HOST + ":" + exports.API_SERVER_PORT + "/api/";
