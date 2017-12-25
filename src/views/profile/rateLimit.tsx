@@ -22,7 +22,7 @@ export default class RateLimit extends React.Component<RateLimitProps, RateLimit
     setupRateLimitWSConnection = () => {
         const ws = new WebSocket(WS_API_BASE);
         // const wsProtocol = window.location.protocol.indexOf("https") > -1 ? "wss" : "ws";
-        // const ws = new WebSocket(wsProtocol + "://" + location.hostname + ":" + location.port + "/ratelimit");
+        // const ws = new WebSocket(wsProtocol + "://" + location.hostname + ":" + location.port + "/ws/ratelimit");
         ws.onmessage = message => {
             this.setState({
                 remain: Number(message.data.toString())
