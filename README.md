@@ -25,3 +25,62 @@ Live at [https://gp.fedepot.com](https://gp.fedepot.com)
 ## Screenshot
 
 ![Screenshot](screenshot/screenshot.png)
+
+## Usage
+
+### Dev
+
+Configure env
+
+```shell
+cp envrc.sample envrc
+```
+
+edit the envrc file
+
+Start api server
+
+```shell
+npm run build:api
+node server/index.js
+```
+
+Start React dev
+
+```shell
+npm run dev
+```
+
+## Production
+
+Configure env
+
+```shell
+cp envrc.sample envrc
+```
+
+edit the envrc and env.ts file
+
+Build all resources
+
+```shell
+npm run build:all
+```
+
+Start Api server
+
+```shell
+npm run start:api
+```
+
+Start SSR server
+
+```shell
+npm run start:ssr
+```
+
+Configure Nginx reverse proxy
+
+[Sample file](nginx/nginx.conf)
+
+**Notes: Redis server should be installed and the host,port,password information should writed to envrc file**

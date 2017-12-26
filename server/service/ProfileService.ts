@@ -99,13 +99,15 @@ export default class ProfileService {
                 filteredRepos
             );
             const starsPerRepo = this.getStarsPerRepoInfo(filteredRepos);
+            const commits = Object.keys(this.commits).map(key => this.commits[key]);
+            this.commits = {};
 
             return {
                 repos: filteredRepos.reduce((previous, current) => {
                     previous[current.id] = current;
                     return previous;
                 }, {}),
-                commits: Object.keys(this.commits).map(key => this.commits[key]),
+                commits,
                 reposPerLan,
                 starsPerLan,
                 commitsPerLan,
@@ -196,7 +198,9 @@ export default class ProfileService {
                                         return {
                                             sha: commit.sha,
                                             owner,
-                                            date: commit.commit.author.date,
+                                            date: commit.commit.author.date
+                                                .substr(0, 10)
+                                                .replace(/-/g, "/"),
                                             message: commit.commit.message,
                                             url: commit.html_url
                                         };

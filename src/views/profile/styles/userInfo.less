@@ -33,3 +33,32 @@
     flex-shrink: 1;
     position: relative;
 }
+
+@media (max-width: 767px) {
+    .wrapper {
+        position: relative;
+        display: block;
+        height: auto;
+    }
+
+    .avatar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        img {
+            width: 136px;
+        }
+    }
+
+    .meta {
+        padding-left: 150px;
+        height: 136px;
+    }
+
+    .commitsChart {
+        margin-top: 20px;
+        display: block;
+        width: 100%;
+        height: 200px;
+    }
+}
