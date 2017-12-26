@@ -1,8 +1,5 @@
 FROM nginx:1.11.10
 
-RUN mkdir -p /home
-RUN mkdir -p /home/wwwlogs
-
 # 删除并添加自定义的Nginx.conf
 RUN rm -v /etc/nginx/nginx.conf
 ADD nginx.conf /etc/nginx/

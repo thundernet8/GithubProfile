@@ -34,6 +34,8 @@
         "lint-staged": "lint-staged",
         "lint-staged:ts": "tslint --fix -c .tslintrc.json",
         "lint-staged:style": "stylelint --syntax less",
+        "docker:api": "npm run build:api && cross-env NODE_ENV=production node server/index.js",
+        "docker:ssr": "npm run build:all && cross-env NODE_ENV=production node ssr/index.js",
         "test": "ts-mocha -p ./ test/**/*.spec.ts"
     },
     "lint-staged": {
