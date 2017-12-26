@@ -2,6 +2,7 @@ import { API_BASE, IS_PROD } from "../../../env";
 import axios from "axios";
 import https from "https";
 import qs from "qs";
+import GlobalStore from "../store/GlobalStore";
 
 // axios.defaults.withCredentials = true;
 export function webApi<T>(
@@ -21,7 +22,7 @@ export function webApi<T>(
     };
 
     const ax = axios.create({
-        baseURL: API_BASE,
+        baseURL: GlobalStore.API_BASE || API_BASE, // get docker ssr render api_base from GlobalStore
         timeout: 300000,
         withCredentials: true,
         httpsAgent: new https.Agent({

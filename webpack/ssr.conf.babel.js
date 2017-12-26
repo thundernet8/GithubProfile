@@ -99,7 +99,8 @@ const loaders = [
 let config = {
     node: {
         __filename: false,
-        __dirname: false
+        __dirname: false,
+        process: false
     },
     entry: {
         server: [path.resolve(__dirname, "../src/app.tsx")]

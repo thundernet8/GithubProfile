@@ -8,6 +8,8 @@ import { URL } from "url";
 import * as send from "koa-send";
 import { lowerCaseFirst } from "../src/shared/utils/TextKit";
 import { IStoreArgument } from "../src/shared/interface/IStoreArgument";
+import { API_BASE } from "../env";
+
 const App = require("../dist/assets/js/server").default;
 const routes = require("../dist/assets/js/server").Routes;
 const DocumentMeta = require("../dist/assets/js/server").SSRDocumentMeta;
@@ -34,6 +36,11 @@ export default async (ctx, next) => {
         if (match) {
             storeArg.match = match;
             const storeClasses = route.component["STORE_CLASSES"];
+            storeClasses.forEach(clazz => {
+                if (clazz.name === "GlobalStore") {
+                    clazz.API_BASE = API_BASE;
+                }
+            });
             storeClasses &&
                 storeClasses.forEach((clazz: any) => {
                     if (clazz.instance) {
