@@ -81,6 +81,6 @@ npm run start:ssr
 
 Configure Nginx reverse proxy
 
-[Sample file](nginx/nginx.conf)
+[Sample file](deploy/nginx/nginx.conf)
 
 **Notes: Redis server should be installed and the host,port,password information should writed to envrc file**

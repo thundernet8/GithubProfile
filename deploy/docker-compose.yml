@@ -1,0 +1,53 @@
+version: "2"
+
+services:
+  redis:
+    restart: always
+    image: redis:latest
+    ports:
+      - "6379"
+    networks:
+      - front-tier
+  apinode:
+    build:
+      context: ./node/api
+      dockerfile: Dockerfile
+    restart: always
+    links:
+      - redis
+    ports:
+      - "8000" # 与env.ts中生产环境API_SERVER_PORT一致
+      - "8999" # 与env.ts中生产环境WS_SERVER_PORT一致
+    volumes:
+      - ./../:/home
+    networks:
+      - front-tier
+
+  ssrnode:
+    build:
+      context: ./node/ssr
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8082" # 与env.ts中生产环境SSR_SERVER_PORT一致
+    volumes:
+      - ./../:/home
+    networks:
+      - front-tier
+  
+  nginx:
+    build: ./nginx
+    restart: always
+    links:
+      - apinode
+      - ssrnode
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/home
+    networks:
+      - front-tier
+
+networks:
+  front-tier:
+    driver: bridge
