@@ -4,7 +4,7 @@
     "description": "Tool of visualizing GitHub profile",
     "main": "index.js",
     "repository": "git@github.com:thundernet8/GithubProfile.git",
-    "keywords": ["github profile", "react", "visualization"],
+    "keywords": ["github profile", "visualization", "react", "koa", "echarts"],
     "author": "wuxueqian <wuxueqian2010@hotmail.com>",
     "license": "MIT",
     "scripts": {
@@ -22,11 +22,7 @@
         "build:all": "npm run build:api && npm run build && npm run build:ssr",
         "analyze": "rimraf dist && mkdirp dist && cross-env ANALYZE_ENV=true npm run build",
         "dev": "npm run build:dev && webpack-dev-server --config webpack/dev.conf.babel.js",
-        "ssr": "npm run build && npm run build:ssr && node ssr",
-        "ssr:dev":
-            "make clean && npm run build:dev && webpack --progress --hide-modules --config webpack/ssr.conf.babel.js && nodemon --watch ssr/**/*.ts --exec ts-node ssr/index.ts",
-        "start:ssr":
-            "npm run build && npm run build:ssr && cross-env NODE_ENV=production forever start ssr/index.js",
+        "start:ssr": "cross-env NODE_ENV=production forever start ssr/index.js",
         "start:api":
             "npm run build:api && cross-env NODE_ENV=production forever start server/index.js",
         "restart": "forever restart ssr/index.js",
