@@ -18,6 +18,8 @@
             "rimraf dist && mkdirp dist && cross-env NODE_ENV=development npm run dll:dev && webpack --progress --hide-modules --config webpack/dev.conf.babel.js",
         "build:ssr":
             "tsc env.ts --lib es2015 --target es5 && NODE_ENV=production webpack --progress --hide-modules --config webpack/ssr.conf.babel.js && tsc ssr/index.ts --lib es2015",
+        "build:api": "tsc server/index.ts --lib es2015 --target es5 ",
+        "build:all": "npm run build:api && npm run build && npm run build:ssr",
         "analyze": "rimraf dist && mkdirp dist && cross-env ANALYZE_ENV=true npm run build",
         "dev": "npm run build:dev && webpack-dev-server --config webpack/dev.conf.babel.js",
         "ssr": "npm run build && npm run build:ssr && node ssr",
@@ -26,8 +28,7 @@
         "start:ssr":
             "npm run build && npm run build:ssr && cross-env NODE_ENV=production forever start ssr/index.js",
         "start:api":
-            "tsc server/index.ts --lib es2015 --target es5 && cross-env NODE_ENV=production forever start server/index.js",
-        "start:o": "forever start ssr/index.js",
+            "npm run build:api && cross-env NODE_ENV=production forever start server/index.js",
         "restart": "forever restart ssr/index.js",
         "stop": "forever stop ssr/index.js",
         "tasklist": "forever list",
@@ -37,7 +38,6 @@
         "lint-staged": "lint-staged",
         "lint-staged:ts": "tslint --fix -c .tslintrc.json",
         "lint-staged:style": "stylelint --syntax less",
-        "tsc:api": "tsc server/index.ts --lib es2015 --target es5 ",
         "test": "ts-mocha -p ./ test/**/*.spec.ts"
     },
     "lint-staged": {

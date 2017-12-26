@@ -15,17 +15,6 @@
     color: #666;
     & > span {
         position: relative;
-        // left: 50%;
-        // text-align: left;
-        // &:nth-child(1) {
-        //     margin-left: -100px;
-        // }
-        // &:nth-child(2) {
-        //     margin-left: 80px;
-        // }
-        // &:nth-child(3) {
-        //     margin-left: 80px;
-        // }
     }
     .count {
         font-size: 36px;
@@ -40,5 +29,21 @@
         font-feature-settings: "tnum";
         font-variant-numeric: tabular-nums;
         font-family: "Montserrat", sans-serif;
+    }
+}
+
+@media (max-width: 767px) {
+    .wrapper {
+        padding: 10px 0;
+    }
+
+    .stat {
+        line-height: 1.5;
+        font-size: 15px;
+        .count {
+            display: block;
+            clear: both;
+            margin-bottom: 10px;
+        }
     }
 }

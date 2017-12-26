@@ -82,7 +82,7 @@ export default class GlobalStore extends AbstractStore {
     @computed
     get totalStars() {
         const { profile } = this;
-        if (!profile) {
+        if (!profile || !profile.starsPerLan) {
             return 0;
         }
         return profile.starsPerLan.reduce((previous, current) => {
@@ -93,7 +93,7 @@ export default class GlobalStore extends AbstractStore {
     @computed
     get totalCommits() {
         const { profile } = this;
-        if (!profile) {
+        if (!profile || !profile.commitsPerLan) {
             return 0;
         }
         return profile.commitsPerLan.reduce((previous, current) => {

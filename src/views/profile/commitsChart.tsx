@@ -21,7 +21,7 @@ export default class CommitsChart extends React.Component<CommitsChartProps, Com
         const dates: string[] = [];
         const countsMap: { [date: string]: number } = {};
         commits.forEach(commit => {
-            const date = commit.substr(0, 10).replace(/-/g, "/");
+            const date = commit;
             if (dates[dates.length - 1] !== date) {
                 dates.push(date);
             }

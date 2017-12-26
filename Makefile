@@ -33,7 +33,7 @@ start:
 # Makefile中，当 ifeq, else 和 endif 没有缩进时，make会正确识别它们，将其作为分支选择的标识
 # 当 ifeq, else 和 endif 有缩进时，make将它们当做普通的shell script
 ifeq ($(TASKCOUNT), 0)
-	yarn start:o
+	yarn start:ssr
 else
 	yarn restart
 endif
