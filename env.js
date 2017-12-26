@@ -16,7 +16,7 @@ exports.API_SERVER_HOST = exports.IS_PROD ? "127.0.0.1" : "127.0.0.1";
 exports.API_SERVER_PORT = exports.IS_PROD ? 8000 : 9000;
 exports.API_BASE = exports.IS_PROD && !exports.IS_NODE
     ? "" + (location.protocol === "https:" ? "https://" : "http://") + location.host + "/api/"
-    : "http://" + exports.API_SERVER_HOST + ":" + exports.API_SERVER_PORT + "/api/";
+    : "http://" + (exports.IS_DOCKER ? "apinode" : exports.API_SERVER_HOST) + ":" + exports.API_SERVER_PORT + "/api/";
 // WebSocket Server(Ratelimit realtime notify)
 exports.WS_SERVER_HOST = exports.IS_PROD ? "127.0.0.1" : "127.0.0.1";
 exports.WS_SERVER_PORT = exports.IS_PROD ? 8999 : 8999;

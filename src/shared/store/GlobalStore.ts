@@ -11,6 +11,8 @@ declare var window;
  * 全局Store(单例)
  */
 export default class GlobalStore extends AbstractStore {
+    public static API_BASE: string = "";
+
     private static instance: GlobalStore;
 
     public static get Instance() {
