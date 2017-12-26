@@ -1,6 +1,6 @@
 import * as Redis from "redis";
 import * as bluebird from "bluebird";
-import { IS_PROD, REDIS_HOST, REDIS_PORT, REDIS_PASSWORD } from "../../env";
+import { IS_PROD, REDIS_HOST, REDIS_PORT, REDIS_PASSWORD, IS_DOCKER } from "../../env";
 import ConsoleWrapper from "../util/ConsoleWrapper";
 
 bluebird.promisifyAll(Redis.RedisClient.prototype);
@@ -12,7 +12,7 @@ export default class RedisService {
 
     private constructor() {
         this.client = Redis.createClient({
-            host: REDIS_HOST,
+            host: IS_DOCKER ? "redis" : REDIS_HOST,
             port: REDIS_PORT,
             password: REDIS_PASSWORD
         });

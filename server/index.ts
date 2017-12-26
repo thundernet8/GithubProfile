@@ -1,6 +1,6 @@
 import * as path from "path";
 import * as Koa from "koa";
-import { API_SERVER_HOST, API_SERVER_PORT } from "../env";
+import { API_SERVER_HOST, API_SERVER_PORT, IS_DOCKER } from "../env";
 import * as bodyParser from "koa-bodyparser";
 import * as koaStatic from "koa-static";
 import * as route from "koa-route";
@@ -60,8 +60,12 @@ app.on("error", err => {
     ConsoleWrapper.error(err);
 });
 
-app.listen(API_SERVER_PORT, API_SERVER_HOST, () => {
-    ConsoleWrapper.log(`API Server Is Listening at http://${API_SERVER_HOST}:${API_SERVER_PORT}`);
+app.listen(API_SERVER_PORT, IS_DOCKER ? "0.0.0.0" : API_SERVER_HOST, () => {
+    ConsoleWrapper.log(
+        `API Server Is Listening at http://${
+            IS_DOCKER ? "0.0.0.0" : API_SERVER_HOST
+        }:${API_SERVER_PORT}`
+    );
     startRateLimitWSServer();
 });
 
