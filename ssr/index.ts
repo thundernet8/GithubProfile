@@ -5,7 +5,7 @@ import * as bodyParser from "koa-bodyparser";
 import * as route from "koa-route";
 import * as moment from "moment";
 import ssrRouter from "./render";
-import { SSR_SERVER_HOST, SSR_SERVER_PORT } from "../env";
+import { SSR_SERVER_HOST, SSR_SERVER_PORT, IS_DOCKER } from "../env";
 
 let app = new koa();
 app.use(bodyParser({}));
@@ -28,8 +28,12 @@ app.use(
 
 app.use(ssrRouter as any);
 
-app.listen(SSR_SERVER_PORT, SSR_SERVER_HOST, () => {
-    console.log(`SSR Node Server Is Listening at http://${SSR_SERVER_HOST}:${SSR_SERVER_PORT}`);
+app.listen(SSR_SERVER_PORT, IS_DOCKER ? "0.0.0.0" : SSR_SERVER_HOST, () => {
+    console.log(
+        `SSR Node Server Is Listening at http://${
+            IS_DOCKER ? "0.0.0.0" : SSR_SERVER_HOST
+        }:${SSR_SERVER_PORT}`
+    );
 });
 
 app.on("error", err => {

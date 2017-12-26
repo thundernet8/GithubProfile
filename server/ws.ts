@@ -1,11 +1,11 @@
 import * as WebSocket from "ws";
-import { WS_SERVER_HOST, WS_SERVER_PORT, WS_RATELIMIT_PATH, IS_PROD } from "../env";
+import { WS_SERVER_HOST, WS_SERVER_PORT, WS_RATELIMIT_PATH, IS_PROD, IS_DOCKER } from "../env";
 import ConsoleWrapper from "./util/ConsoleWrapper";
 import GithubService from "./service/GithubService";
 
 export default function startRateLimitWSServer() {
     const wss = new WebSocket.Server({
-        host: WS_SERVER_HOST,
+        host: IS_DOCKER ? "0.0.0.0" : WS_SERVER_HOST,
         port: WS_SERVER_PORT,
         path: WS_RATELIMIT_PATH,
         headers: {
@@ -44,9 +44,9 @@ export default function startRateLimitWSServer() {
         ConsoleWrapper.error(err);
     });
 
-    if (!IS_PROD) {
-        ConsoleWrapper.log(
-            `Ratelimit WS Server Is Listening at ws://${WS_SERVER_HOST}:${WS_SERVER_PORT}${WS_RATELIMIT_PATH}`
-        );
-    }
+    ConsoleWrapper.log(
+        `Ratelimit WS Server Is Listening at ws://${
+            IS_DOCKER ? "0.0.0.0" : WS_SERVER_HOST
+        }:${WS_SERVER_PORT}${WS_RATELIMIT_PATH}`
+    );
 }

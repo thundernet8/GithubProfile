@@ -81,6 +81,36 @@ npm run start:ssr
 
 Configure Nginx reverse proxy
 
-[Sample file](nginx/nginx.conf)
+[Sample file](deploy/nginx/nginx.conf)
 
 **Notes: Redis server should be installed and the host,port,password information should writed to envrc file**
+
+## Docker deploy
+
+Build all resources
+
+```shell
+npm run build:all
+```
+
+Configure env
+
+```shell
+cp envrc.sample envrc
+```
+
+edit the envrc and deploy/nginx.conf
+
+For first time:
+
+```shell
+cd deploy && docker-compose up
+```
+
+Next times:
+
+```shell
+cd deploy && docker-compose start
+```
+
+For https home address, copy nginx-ssl.conf to cover nginx.conf.

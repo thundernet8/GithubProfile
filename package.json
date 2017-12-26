@@ -9,16 +9,16 @@
     "license": "MIT",
     "scripts": {
         "dll":
-            "tsc env.ts --lib es2015 --target es5 && cross-env NODE_ENV=production webpack -p --hide-modules --config webpack/dll.conf.babel.js",
+            "tsc env.ts --lib es2015,dom --target es5 && cross-env NODE_ENV=production webpack -p --hide-modules --config webpack/dll.conf.babel.js",
         "dll:dev":
-            "tsc env.ts --lib es2015 --target es5 && cross-env NODE_ENV=development webpack --hide-modules --config webpack/dll.conf.babel.js",
+            "tsc env.ts --lib es2015,dom --target es5 && cross-env NODE_ENV=development webpack --hide-modules --config webpack/dll.conf.babel.js",
         "build":
-            "rimraf dist && mkdirp dist && tsc env.ts --lib es2015 --target es5 && cross-env NODE_ENV=production npm run dll && cross-env NODE_ENV=production webpack -p --progress --hide-modules --config webpack/prod.conf.babel.js",
+            "rimraf dist && mkdirp dist && tsc env.ts --lib es2015,dom --target es5 && cross-env NODE_ENV=production npm run dll && cross-env NODE_ENV=production webpack -p --progress --hide-modules --config webpack/prod.conf.babel.js",
         "build:dev":
             "rimraf dist && mkdirp dist && cross-env NODE_ENV=development npm run dll:dev && webpack --progress --hide-modules --config webpack/dev.conf.babel.js",
         "build:ssr":
-            "tsc env.ts --lib es2015 --target es5 && NODE_ENV=production webpack --progress --hide-modules --config webpack/ssr.conf.babel.js && tsc ssr/index.ts --lib es2015",
-        "build:api": "tsc server/index.ts --lib es2015 --target es5 ",
+            "tsc env.ts --lib es2015,dom --target es5 && NODE_ENV=production webpack --progress --hide-modules --config webpack/ssr.conf.babel.js && tsc ssr/index.ts --lib es2015,dom",
+        "build:api": "tsc server/index.ts --lib dom,es2015 --target es5 ",
         "build:all": "npm run build:api && npm run build && npm run build:ssr",
         "analyze": "rimraf dist && mkdirp dist && cross-env ANALYZE_ENV=true npm run build",
         "dev": "npm run build:dev && webpack-dev-server --config webpack/dev.conf.babel.js",
@@ -34,6 +34,9 @@
         "lint-staged": "lint-staged",
         "lint-staged:ts": "tslint --fix -c .tslintrc.json",
         "lint-staged:style": "stylelint --syntax less",
+        "docker:api": "cross-env NODE_ENV=production CONTAINER_ENV=docker node server/index.js",
+        "docker:ssr": "cross-env NODE_ENV=production CONTAINER_ENV=docker node ssr/index.js",
+        "docker": "npm run build:all && cd deploy && docker-compose start",
         "test": "ts-mocha -p ./ test/**/*.spec.ts"
     },
     "lint-staged": {
