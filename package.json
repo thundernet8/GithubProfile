@@ -23,8 +23,7 @@
         "analyze": "rimraf dist && mkdirp dist && cross-env ANALYZE_ENV=true npm run build",
         "dev": "npm run build:dev && webpack-dev-server --config webpack/dev.conf.babel.js",
         "start:ssr": "cross-env NODE_ENV=production forever start ssr/index.js",
-        "start:api":
-            "npm run build:api && cross-env NODE_ENV=production forever start server/index.js",
+        "start:api": "cross-env NODE_ENV=production forever start server/index.js",
         "restart": "forever restart ssr/index.js",
         "stop": "forever stop ssr/index.js",
         "tasklist": "forever list",
