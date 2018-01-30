@@ -97,7 +97,6 @@
         "bluebird": "^3.5.1",
         "bufferutil": "^3.0.3",
         "classnames": "^2.2.5",
-        "dotenv": "^5.0.0",
         "echarts": "^3.8.5",
         "github": "^13.0.1",
         "koa": "^2.4.1",
