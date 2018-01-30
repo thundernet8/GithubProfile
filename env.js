@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var path = require("path");
 exports.IS_NODE = typeof global !== "undefined" && new Object().toString.call(global) === "[object global]";
 // Init process.env
