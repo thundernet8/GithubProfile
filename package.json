@@ -4,20 +4,21 @@
     "description": "Tool of visualizing GitHub profile",
     "main": "index.js",
     "repository": "git@github.com:thundernet8/GithubProfile.git",
-    "keywords": ["github profile", "visualization", "react", "koa", "echarts"],
+    "keywords": [
+        "github profile",
+        "visualization",
+        "react",
+        "koa",
+        "echarts"
+    ],
     "author": "wuxueqian <wuxueqian2010@hotmail.com>",
     "license": "MIT",
     "scripts": {
-        "dll":
-            "tsc env.ts --lib es2015,dom --target es5 && cross-env NODE_ENV=production webpack -p --hide-modules --config webpack/dll.conf.babel.js",
-        "dll:dev":
-            "tsc env.ts --lib es2015,dom --target es5 && cross-env NODE_ENV=development webpack --hide-modules --config webpack/dll.conf.babel.js",
-        "build":
-            "rimraf dist && mkdirp dist && tsc env.ts --lib es2015,dom --target es5 && cross-env NODE_ENV=production npm run dll && cross-env NODE_ENV=production webpack -p --progress --hide-modules --config webpack/prod.conf.babel.js",
-        "build:dev":
-            "rimraf dist && mkdirp dist && cross-env NODE_ENV=development npm run dll:dev && webpack --progress --hide-modules --config webpack/dev.conf.babel.js",
-        "build:ssr":
-            "tsc env.ts --lib es2015,dom --target es5 && NODE_ENV=production webpack --progress --hide-modules --config webpack/ssr.conf.babel.js && tsc ssr/index.ts --lib es2015,dom",
+        "dll": "tsc env.ts --lib es2015,dom --target es5 && cross-env NODE_ENV=production webpack -p --hide-modules --config webpack/dll.conf.babel.js",
+        "dll:dev": "tsc env.ts --lib es2015,dom --target es5 && cross-env NODE_ENV=development webpack --hide-modules --config webpack/dll.conf.babel.js",
+        "build": "rimraf dist && mkdirp dist && tsc env.ts --lib es2015,dom --target es5 && cross-env NODE_ENV=production npm run dll && cross-env NODE_ENV=production webpack -p --progress --hide-modules --config webpack/prod.conf.babel.js",
+        "build:dev": "rimraf dist && mkdirp dist && cross-env NODE_ENV=development npm run dll:dev && webpack --progress --hide-modules --config webpack/dev.conf.babel.js",
+        "build:ssr": "tsc env.ts --lib es2015,dom --target es5 && NODE_ENV=production webpack --progress --hide-modules --config webpack/ssr.conf.babel.js && tsc ssr/index.ts --lib es2015,dom",
         "build:api": "tsc server/index.ts --lib dom,es2015 --target es5 ",
         "build:all": "npm run build:api && npm run build && npm run build:ssr",
         "analyze": "rimraf dist && mkdirp dist && cross-env ANALYZE_ENV=true npm run build",
@@ -39,8 +40,12 @@
         "test": "ts-mocha -p ./ test/**/*.spec.ts"
     },
     "lint-staged": {
-        "src/**/*.{ts,tsx}": ["lint-staged:ts"],
-        "src/**/*.less": ["lint-staged:style"]
+        "src/**/*.{ts,tsx}": [
+            "lint-staged:ts"
+        ],
+        "src/**/*.less": [
+            "lint-staged:style"
+        ]
     },
     "pre-commit": "lint-staged",
     "devDependencies": {
@@ -92,6 +97,7 @@
         "bluebird": "^3.5.1",
         "bufferutil": "^3.0.3",
         "classnames": "^2.2.5",
+        "dotenv": "^5.0.0",
         "echarts": "^3.8.5",
         "github": "^13.0.1",
         "koa": "^2.4.1",
