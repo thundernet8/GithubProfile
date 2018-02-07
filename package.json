@@ -37,14 +37,19 @@
         "docker:api": "cross-env NODE_ENV=production CONTAINER_ENV=docker node server/index.js",
         "docker:ssr": "cross-env NODE_ENV=production CONTAINER_ENV=docker node ssr/index.js",
         "docker": "npm run build:all && cd deploy && docker-compose start",
-        "test": "ts-mocha -p ./ test/**/*.spec.ts"
+        "test": "ts-mocha -p ./ test/**/*.spec.ts",
+        "format": "prettier --write"
     },
     "lint-staged": {
         "src/**/*.{ts,tsx}": [
-            "lint-staged:ts"
+            "format",
+            "lint-staged:ts",
+            "git add"
         ],
         "src/**/*.less": [
-            "lint-staged:style"
+            "format",
+            "lint-staged:style",
+            "git add"
         ]
     },
     "pre-commit": "lint-staged",
